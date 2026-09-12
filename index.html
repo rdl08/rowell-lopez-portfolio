@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rowell Lopez | WordPress & Elementor Developer</title>
+
+  <style>
+    /* =========================================================
+       1. RESET + VARIABLES
+       ========================================================= */
+    :root {
+      --black: #111111;
+      --dark: #222222;
+      --text: #444444;
+      --muted: #777777;
+      --light: #f7f7f7;
+      --border: #dddddd;
+      --white: #ffffff;
+      --container: 1180px;
+      --radius: 14px;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-alt: #f7f7f7;
+      --border-soft: #eeeeee;
+      --button-light-bg: #eeeeee;
+      --button-light-text: #111111;
+      --hero-bg-start: #fafafa;
+      --hero-bg-end: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.06);
+      --icon-bg: #eeeeee;
+      --tag-bg: #f0f0f0;
+      --tag-text: #555555;
+      --stat-bg: #f6f6f6;
+      --contact-bg: #111111;
+      --contact-text: #ffffff;
+      --contact-muted: #bbbbbb;
+      --transition: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--bg);
+      transition: background-color var(--transition), color var(--transition);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 56px));
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       2. REUSABLE COMPONENTS
+       ========================================================= */
+    .button {
+      display: inline-block;
+      padding: 13px 21px;
+      border-radius: 7px;
+      background: var(--contact-bg);
+      color: var(--contact-text);
+      font-size: 14px;
+      font-weight: 700;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .button--light {
+      background: var(--button-light-bg);
+      color: var(--button-light-text);
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section--light {
+      background: var(--light);
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      max-width: 480px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       3. HEADER
+       ========================================================= */
+    .header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #555555;
+      font-size: 14px;
+    }
+
+    .navigation a:hover {
+      color: var(--black);
+    }
+
+    .header__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* =========================================================
+       4. HERO
+       ========================================================= */
+    .hero {
+      padding: 100px 0 90px;
+      background: linear-gradient(180deg, var(--hero-bg-start), var(--hero-bg-end));
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      max-width: 800px;
+      margin: 15px 0 22px;
+      font-size: 64px;
+      line-height: 1.02;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: #777777;
+    }
+
+    .hero__description {
+      max-width: 650px;
+      color: #555555;
+      font-size: 18px;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .profile-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .profile-card__photo {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: var(--icon-bg);
+      font-size: 42px;
+      font-weight: 800;
+    }
+
+    .profile-card h3 {
+      margin: 0;
+      text-align: center;
+    }
+
+    .profile-card p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .stat {
+      padding: 15px;
+      border-radius: 10px;
+      background: var(--stat-bg);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 21px;
+    }
+
+    .stat small {
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       5. SERVICES
+       ========================================================= */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card,
+    .project-card,
+    .experience-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .service-card__icon {
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    .service-card h3,
+    .project-card h3,
+    .experience-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .service-card p,
+    .project-card p,
+    .experience-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       6. PROJECTS
+       ========================================================= */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .project-tag {
+      height: max-content;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .project-card__tech {
+      margin-top: 22px;
+      color: #888888;
+      font-size: 12px;
+    }
+
+    /* =========================================================
+       7. EXPERIENCE
+       ========================================================= */
+    .experience-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 25px;
+    }
+
+    .experience-card__date {
+      color: #888888;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       8. SKILLS
+       ========================================================= */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 9px 15px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       9. CONTACT
+       ========================================================= */
+    .contact {
+      padding: 95px 0;
+      background: var(--contact-bg);
+      color: var(--contact-text);
+    }
+
+    .contact__grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .contact h2 {
+      margin: 0 0 10px;
+      font-size: 45px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .contact p {
+      max-width: 650px;
+      margin: 0;
+      color: var(--contact-muted);
+    }
+
+    .contact .button {
+      background: var(--white);
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       10. FOOTER
+       ========================================================= */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 25px 0;
+      color: #888888;
+      font-size: 12px;
+    }
+
+    /* =========================================================
+       11. THEME TOGGLE
+       ========================================================= */
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--black);
+      cursor: pointer;
+      font-size: 17px;
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle__sun,
+    .theme-toggle__moon {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-toggle__moon,
+    html:not([data-theme]) .theme-toggle__moon {
+      display: inline;
+    }
+
+    html[data-theme="dark"] .theme-toggle__sun {
+      display: inline;
+    }
+
+    /* =========================================================
+       12. DARK MODE
+       ========================================================= */
+    html[data-theme="dark"] {
+      --black: #f5f5f5;
+      --dark: #eeeeee;
+      --text: #c8c8c8;
+      --muted: #999999;
+      --light: #151515;
+      --border: #333333;
+      --white: #111111;
+      --bg: #0f0f0f;
+      --surface: #171717;
+      --surface-alt: #151515;
+      --border-soft: #2a2a2a;
+      --button-light-bg: #242424;
+      --button-light-text: #f5f5f5;
+      --hero-bg-start: #151515;
+      --hero-bg-end: #0f0f0f;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --icon-bg: #242424;
+      --tag-bg: #242424;
+      --tag-text: #c8c8c8;
+      --stat-bg: #202020;
+      --contact-bg: #050505;
+      --contact-text: #f5f5f5;
+      --contact-muted: #999999;
+    }
+
+    html[data-theme="dark"] .section--light {
+      background: var(--surface-alt);
+    }
+
+    html[data-theme="dark"] .navigation {
+      color: #bdbdbd;
+    }
+
+    html[data-theme="dark"] .navigation a:hover {
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       13. RESPONSIVE
+       ========================================================= */
+    @media (max-width: 900px) {
+      .hero__grid,
+      .services,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        grid-template-columns: 1fr;
+      }
+
+      .contact__grid {
+        display: block;
+      }
+
+      .contact .button {
+        display: inline-block;
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(var(--container), calc(100% - 32px));
+      }
+
+      .navigation {
+        display: none;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 15px;
+        font-size: 34px;
+      }
+
+      .profile-card {
+        max-width: 420px;
+        margin-inline: auto;
+      }
+
+      .footer {
+        display: block;
+      }
+
+      .footer span + span {
+        display: block;
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+  <header class="container header">
+    <a class="logo" href="#top">ROWELL LOPEZ</a>
+
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to dark mode" title="Switch theme">
+        <span class="theme-toggle__moon" aria-hidden="true">☾</span>
+        <span class="theme-toggle__sun" aria-hidden="true">☀</span>
+      </button>
+      <a class="button" href="#contact">Let's talk</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <div class="eyebrow">WordPress · Elementor · Plugin Development</div>
+
+          <h1>
+            I build clean, fast WordPress websites that <span>work.</span>
+          </h1>
+
+          <p class="hero__description">
+            WordPress Developer with 11+ years of hands-on experience in Elementor,
+            WooCommerce, custom plugins, ACF, JetEngine, performance optimization,
+            analytics and production troubleshooting.
+          </p>
+
+          <div class="hero__actions">
+            <a class="button" href="#work">View my work</a>
+            <a class="button button--light" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <!-- Replace this RL block with your photo if needed. -->
+          <div class="profile-card__photo">RL</div>
+
+          <h3>Rowell Lopez</h3>
+          <p>WordPress / Elementor Developer</p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>11+</strong>
+              <small>Years</small>
+            </div>
+            <div class="stat">
+              <strong>10</strong>
+              <small>Years Elementor</small>
+            </div>
+            <div class="stat">
+              <strong>PHP</strong>
+              <small>Development</small>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SERVICES
+         ===================================================== -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>What I do</h2>
+          <p>
+            From pixel-perfect Elementor builds to custom WordPress functionality
+            and production support.
+          </p>
+        </div>
+
+        <div class="services">
+          <article class="service-card">
+            <div class="service-card__icon">▦</div>
+            <h3>Elementor Development</h3>
+            <p>
+              Responsive layouts, reusable components, templates, dynamic content
+              and custom styling.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card__icon">⌘</div>
+            <h3>Custom Plugins</h3>
+            <p>
+              PHP-based WordPress plugins, admin tools, data handling, integrations
+              and custom functionality.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card__icon">↗</div>
+            <h3>Performance</h3>
+            <p>
+              Page-speed troubleshooting, Core Web Vitals, optimization and
+              production issue resolution.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card__icon">◎</div>
+            <h3>Tracking & QA</h3>
+            <p>
+              GTM, GA4, conversion tracking, cookie consent, staging validation
+              and UAT.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PROJECTS
+         ===================================================== -->
+    <section id="work" class="section section--light">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Selected work</h2>
+          <p>
+            A few examples of WordPress projects and technical work I've handled.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>Maynilad Advisories</h3>
+                <span class="project-tag">Custom Plugin</span>
+              </div>
+              <p>
+                Built a custom WordPress plugin for uploading and managing CSV/XML
+                advisory data for non-technical administrators, with front-end
+                advisory tables and data management.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              WordPress · PHP · CSV/XML · Admin UI
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>Whittier Trust</h3>
+                <span class="project-tag">Elementor</span>
+              </div>
+              <p>
+                Worked on Elementor corporate pages, dynamic content structures,
+                staff relationships, search functionality, analytics, cookie consent
+                and staging/production validation.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              Elementor · ACF · JetEngine · GTM · GA4
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>Cycliq</h3>
+                <span class="project-tag">WooCommerce</span>
+              </div>
+              <p>
+                Developed and maintained an eCommerce website for bike cameras,
+                including WooCommerce functionality, product catalog work and
+                conversion tracking.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              WordPress · WooCommerce · GA4 · GTM
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>Accesshire</h3>
+                <span class="project-tag">Debugging</span>
+              </div>
+              <p>
+                Diagnosed and fixed missing custom product attributes in the
+                WooCommerce backend by tracing the WordPress/WooCommerce data and
+                configuration.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              WooCommerce · WordPress · Custom Data
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>Tax Resolutions</h3>
+                <span class="project-tag">Lead Gen</span>
+              </div>
+              <p>
+                Implemented conversion tracking and lead capture and connected the
+                captured leads to the client's Zapier workflow.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              WordPress · Tracking · Zapier
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__top">
+                <h3>CI Scientific</h3>
+                <span class="project-tag">eCommerce</span>
+              </div>
+              <p>
+                Worked on scientific eCommerce solutions, including product-page
+                customization, WooCommerce functionality and performance
+                improvements.
+              </p>
+            </div>
+            <div class="project-card__tech">
+              WooCommerce · Templates · Performance
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         EXPERIENCE
+         ===================================================== -->
+        <section id="experience" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Experience</h2>
+          <p>
+            11+ years of practical WordPress development across client, agency and
+            production environments.
+          </p>
+        </div>
+
+        <div class="experience-list">
+        <article class="experience-card">
+            <div>
+              <h3>ClinkIT Solutions</h3>
+              <div class="experience-card__date">
+                Web Developer · Sep 2025 – Present
+              </div>
+            </div>
+            <p>
+              Developed a custom WordPress plugin for managing and publishing public service advisories, providing reliable data management, administrative control, and streamlined content updates.
+              Implemented a structured CSV/XML data ingestion and processing system, allowing non-technical users to efficiently upload, manage, and publish advisory data.
+              Built custom WordPress functionality using PHP, ACF, JetEngine, and Elementor to deliver scalable and maintainable solutions based on business requirements.
+              Created custom WordPress templates, archive layouts, and single post templates to support dynamic content and tailored page structures.
+              Translated Figma designs into responsive, production-ready WordPress interfaces while maintaining design accuracy, usability, and cross-device compatibility.
+              Developed custom post types, fields, relationships, and dynamic content structures using ACF and JetEngine to support complex content management requirements.
+            </p>
+          </article>
+          <article class="experience-card">
+            <div>
+              <h3>Access Group Australia</h3>
+              <div class="experience-card__date">
+                Web Developer · March 2025 – August 2025
+              </div>
+            </div>
+            <p>
+              Designed and developed web-based systems and WordPress solutions to enhance customer experience at Access Group Australia.
+              Managed and optimized WooCommerce configurations, including resolving critical custom product attribute display issues involving previously hard-coded attributes that were not rendering correctly.
+              Developed custom WordPress templates and functionality using PHP, tailored to business and operational requirements.
+              Collaborated closely with IT, marketing, and operations teams to deliver secure, scalable, and user-focused web solutions.
+            </p>
+          </article>
+
+          <article class="experience-card">
+            <div>
+              <h3>Accenture Inc.</h3>
+              <div class="experience-card__date">
+                Software Engineer · October 2022 – February 2025
+              </div>
+            </div>
+            <p>
+              Developed comprehensive test plans aligning with project objectives to ensure thorough testing coverage.  
+              Created detailed test cases based on functional and non-functional requirements, enhancing software quality.  
+              Executed manual and automated testing, identifying defects and facilitating efficient issue resolution.  
+              Collaborated with cross-functional teams to support User Acceptance Testing (UAT) and ensure software meets user expectations.
+            </p>
+          </article>
+           <article class="experience-card">
+            <div>
+              <h3>Clear Choice Marketing Group</h3>
+              <div class="experience-card__date">
+                Lead Web Developer · Nov 2020 – Aug 2025
+              </div>
+            </div>
+            <p>
+              Collaborated closely with a US client as the Lead Web Developer, focusing on delivering high-quality web solutions.  
+              Designed and developed custom multistep forms for Tax Resolutions, enhancing user experience and functionality.  
+              Reconstructed and redesigned existing websites using WordPress, WooCommerce, and Elementor Pro to optimize performance.
+              Built custom multistep tax resolution forms and high-conversion landing pages. 
+              Reconstructed and optimized WordPress websites using WooCommerce and Elementor Pro.
+            </p>
+          </article>
+
+          <article class="experience-card">
+            <div>
+              <h3>Clear Corporate Solutions</h3>
+              <div class="experience-card__date">
+                Software Engineer · October 2022 – February 2025
+              </div>
+            </div>
+            <p>
+              Working closely with Australian Client.
+              Responsible for the overall technical reconstruction and revision of the existing Dynamic E-commerce website. 
+              Fixed bugs from existing website and implemented enhancements that significantly improved web functionality and speed. Develop or validate test routines and schedules to ensure that test cases mimic external interfaces and address all browser and device types. Perform web site tests according to planned schedules.
+
+            </p>
+          </article>
+
+
+          <article class="experience-card">
+            <div>
+              <h3>Fortworth Inc</h3>
+              <div class="experience-card__date">
+                Web Developer · Feb 2017 - Feb 2018
+              </div>
+            </div>
+            <p>
+            An LMS website for students and teachers. Created Using Moodle from Drupal
+      Web revision and migration from point a to point b.
+      Creating website layout/user interfaces by using standard HTML/CSS practices.
+      Responsible for maintaining, expanding, and scaling of the website. 
+      Develop or implement procedures for ongoing website revision.
+            </p>
+          </article>
+          <article class="experience-card">
+            <div>
+              <h3>Artistryware Inc</h3>
+              <div class="experience-card__date">
+                Software Developer · April 2016 - Feb 2017
+              </div>
+            </div>
+            <p>
+            A small and start-up gaming developing company. Established Company website and made customization.
+            Responsibilities: Document and maintain software functionality. Comply with project plans and industry standards. In charge of Company’s Website modification and developing.
+
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TECH STACK
+         ===================================================== -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Tech stack</h2>
+          <p>
+            The tools I use to build, troubleshoot and improve WordPress websites.
+          </p>
+        </div>
+
+        <div class="skills">
+          <span class="skill">WordPress</span>
+          <span class="skill">Elementor Pro</span>
+          <span class="skill">WooCommerce</span>
+          <span class="skill">PHP</span>
+          <span class="skill">HTML / CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">ACF</span>
+          <span class="skill">JetEngine</span>
+          <span class="skill">Custom Post Types</span>
+          <span class="skill">Custom Plugins</span>
+          <span class="skill">GTM</span>
+          <span class="skill">GA4</span>
+          <span class="skill">Google Ads</span>
+          <span class="skill">OneTrust</span>
+          <span class="skill">Zapier</span>
+          <span class="skill">GoHighLevel</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CONTACT
+         ===================================================== -->
+    <section id="contact" class="contact">
+      <div class="container contact__grid">
+        <div>
+          <div class="eyebrow">Have a WordPress project?</div>
+          <h2>Let's build something useful.</h2>
+          <p>
+            Available for WordPress development, Elementor builds, custom plugin
+            work, troubleshooting and ongoing technical support.
+          </p>
+        </div>
+
+        <a class="button" href="mailto:rowell.lopez08@gmail.com">
+          rowell.lopez08@gmail.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+  <footer class="container footer">
+    <span>© 2026 Rowell Lopez</span>
+    <span>WordPress · Elementor · Web Development</span>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('rowell-theme');
+
+      // Default to the user's system preference unless they previously chose a theme.
+      const initialTheme = savedTheme ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      root.setAttribute('data-theme', initialTheme);
+
+      function updateToggle() {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      toggle.addEventListener('click', () => {
+        const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('rowell-theme', nextTheme);
+        updateToggle();
+      });
+
+      updateToggle();
+    })();
+  </script>
+
+</body>
+</html>
