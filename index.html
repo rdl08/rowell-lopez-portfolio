@@ -316,6 +316,55 @@
       justify-content: space-between;
     }
 
+    /* Live website screenshot */
+    .project-card__image {
+      display: block;
+      height: 220px;
+      margin: -24px -24px 24px;
+      width: calc(100% + 48px);
+      overflow: hidden;
+      background: #eeeeee;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-card__image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-card__image img {
+      transform: scale(1.025);
+    }
+
+    .project-card__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card__live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .project-card__live::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #35b86b;
+    }
+
     .project-card__top {
       display: flex;
       justify-content: space-between;
@@ -567,7 +616,18 @@
         margin-top: 5px;
       }
     }
-  </style>
+  
+    /* Project links */
+    .project-card h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .project-card h3 a:hover {
+      opacity: 0.65;
+    }
+</style>
 </head>
 
 <body>
@@ -729,53 +789,71 @@
           </article>
 
           <article class="project-card">
-            <div>
-              <div class="project-card__top">
-                <h3>Whittier Trust</h3>
-                <span class="project-tag">Elementor</span>
+            <a class="project-card__image" href="https://www.whittiertrust.com/" target="_blank" rel="noopener noreferrer" aria-label="View Whittier Trust website">
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.whittiertrust.com%2F?w=1200&h=800" alt="Screenshot of the Whittier Trust website" loading="lazy">
+            </a>
+            <div class="project-card__content">
+              <div>
+                <div class="project-card__top">
+                  <h3><a href="https://www.whittiertrust.com/" target="_blank" rel="noopener noreferrer">Whittier Trust ↗</a></h3>
+                  <span class="project-tag">Elementor</span>
+                </div>
+                <p>
+                  Worked on Elementor corporate pages, dynamic content structures, staff relationships, search functionality, analytics, cookie consent and staging/production validation.
+                </p>
               </div>
-              <p>
-                Worked on Elementor corporate pages, dynamic content structures,
-                staff relationships, search functionality, analytics, cookie consent
-                and staging/production validation.
-              </p>
-            </div>
-            <div class="project-card__tech">
-              Elementor · ACF · JetEngine · GTM · GA4
+              <div>
+                <div class="project-card__tech">
+                  Elementor · ACF · JetEngine · GTM · GA4
+                </div>
+                <a class="project-card__live" href="https://www.whittiertrust.com/" target="_blank" rel="noopener noreferrer">Live website</a>
+              </div>
             </div>
           </article>
 
           <article class="project-card">
-            <div>
-              <div class="project-card__top">
-                <h3>Cycliq</h3>
-                <span class="project-tag">WooCommerce</span>
+            <a class="project-card__image" href="https://cycliq.com/" target="_blank" rel="noopener noreferrer" aria-label="View Cycliq website">
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcycliq.com%2F?w=1200&h=800" alt="Screenshot of the Cycliq website" loading="lazy">
+            </a>
+            <div class="project-card__content">
+              <div>
+                <div class="project-card__top">
+                  <h3><a href="https://cycliq.com/" target="_blank" rel="noopener noreferrer">Cycliq ↗</a></h3>
+                  <span class="project-tag">WooCommerce</span>
+                </div>
+                <p>
+                  Developed and maintained an eCommerce website for bike cameras, including WooCommerce functionality, product catalog work and conversion tracking.
+                </p>
               </div>
-              <p>
-                Developed and maintained an eCommerce website for bike cameras,
-                including WooCommerce functionality, product catalog work and
-                conversion tracking.
-              </p>
-            </div>
-            <div class="project-card__tech">
-              WordPress · WooCommerce · GA4 · GTM
+              <div>
+                <div class="project-card__tech">
+                  WordPress · WooCommerce · GA4 · GTM
+                </div>
+                <a class="project-card__live" href="https://cycliq.com/" target="_blank" rel="noopener noreferrer">Live website</a>
+              </div>
             </div>
           </article>
 
           <article class="project-card">
-            <div>
-              <div class="project-card__top">
-                <h3>Accesshire</h3>
-                <span class="project-tag">Debugging</span>
+            <a class="project-card__image" href="https://www.accesshire.net/" target="_blank" rel="noopener noreferrer" aria-label="View Accesshire website">
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.accesshire.net%2F?w=1200&h=800" alt="Screenshot of the Access Hire website" loading="lazy">
+            </a>
+            <div class="project-card__content">
+              <div>
+                <div class="project-card__top">
+                  <h3><a href="https://www.accesshire.net/" target="_blank" rel="noopener noreferrer">Accesshire ↗</a></h3>
+                  <span class="project-tag">Debugging</span>
+                </div>
+                <p>
+                  Diagnosed and fixed missing custom product attributes in the WooCommerce backend by tracing the WordPress/WooCommerce data and configuration.
+                </p>
               </div>
-              <p>
-                Diagnosed and fixed missing custom product attributes in the
-                WooCommerce backend by tracing the WordPress/WooCommerce data and
-                configuration.
-              </p>
-            </div>
-            <div class="project-card__tech">
-              WooCommerce · WordPress · Custom Data
+              <div>
+                <div class="project-card__tech">
+                  WooCommerce · WordPress · Custom Data
+                </div>
+                <a class="project-card__live" href="https://www.accesshire.net/" target="_blank" rel="noopener noreferrer">Live website</a>
+              </div>
             </div>
           </article>
 
@@ -798,7 +876,7 @@
           <article class="project-card">
             <div>
               <div class="project-card__top">
-                <h3>CI Scientific</h3>
+                <h3><a href="https://ciscientific.com/" target="_blank" rel="noopener noreferrer">CI Scientific ↗</a></h3>
                 <span class="project-tag">eCommerce</span>
               </div>
               <p>
@@ -818,7 +896,7 @@
     <!-- =====================================================
          EXPERIENCE
          ===================================================== -->
-        <section id="experience" class="section">
+    <section id="experience" class="section">
       <div class="container">
         <div class="section-heading">
           <h2>Experience</h2>
@@ -829,7 +907,7 @@
         </div>
 
         <div class="experience-list">
-        <article class="experience-card">
+          <article class="experience-card">
             <div>
               <h3>ClinkIT Solutions</h3>
               <div class="experience-card__date">
@@ -837,101 +915,55 @@
               </div>
             </div>
             <p>
-              Developed a custom WordPress plugin for managing and publishing public service advisories, providing reliable data management, administrative control, and streamlined content updates.
-              Implemented a structured CSV/XML data ingestion and processing system, allowing non-technical users to efficiently upload, manage, and publish advisory data.
-              Built custom WordPress functionality using PHP, ACF, JetEngine, and Elementor to deliver scalable and maintainable solutions based on business requirements.
-              Created custom WordPress templates, archive layouts, and single post templates to support dynamic content and tailored page structures.
-              Translated Figma designs into responsive, production-ready WordPress interfaces while maintaining design accuracy, usability, and cross-device compatibility.
-              Developed custom post types, fields, relationships, and dynamic content structures using ACF and JetEngine to support complex content management requirements.
-            </p>
-          </article>
-          <article class="experience-card">
-            <div>
-              <h3>Access Group Australia</h3>
-              <div class="experience-card__date">
-                Web Developer · March 2025 – August 2025
-              </div>
-            </div>
-            <p>
-              Designed and developed web-based systems and WordPress solutions to enhance customer experience at Access Group Australia.
-              Managed and optimized WooCommerce configurations, including resolving critical custom product attribute display issues involving previously hard-coded attributes that were not rendering correctly.
-              Developed custom WordPress templates and functionality using PHP, tailored to business and operational requirements.
-              Collaborated closely with IT, marketing, and operations teams to deliver secure, scalable, and user-focused web solutions.
+              Develop and maintain WordPress websites and functionality using
+              Elementor, ACF, JetEngine, custom post types, templates and plugins.
+              Handle production troubleshooting, staging validation, analytics/
+              tracking and client technical support.
             </p>
           </article>
 
           <article class="experience-card">
             <div>
-              <h3>Accenture Inc.</h3>
+              <h3>Access Group International / Accesshire</h3>
               <div class="experience-card__date">
-                Software Engineer · October 2022 – February 2025
+                Web Developer · Mar 2025 – Jun 2025 · Australia
               </div>
             </div>
             <p>
-              Developed comprehensive test plans aligning with project objectives to ensure thorough testing coverage.  
-              Created detailed test cases based on functional and non-functional requirements, enhancing software quality.  
-              Executed manual and automated testing, identifying defects and facilitating efficient issue resolution.  
-              Collaborated with cross-functional teams to support User Acceptance Testing (UAT) and ensure software meets user expectations.
+              Designed and developed web-based systems and WordPress solutions to improve customer experience.
+              Managed and optimized WooCommerce configurations, including resolving critical custom product
+              attribute display issues involving previously hard-coded attributes. Integrated WooCommerce product
+              data through JSON/API endpoints for dynamic frontend presentation, and developed custom PHP templates
+              and functionality. Collaborated with IT, marketing and operations teams to deliver secure, scalable
+              and user-focused solutions.
             </p>
           </article>
-           <article class="experience-card">
+
+          <article class="experience-card">
             <div>
               <h3>Clear Choice Marketing Group</h3>
               <div class="experience-card__date">
-                Lead Web Developer · Oct 2020 – Aug 2025
+                Lead Web Developer · Nov 2020 – Aug 2025
               </div>
             </div>
             <p>
-              Collaborated closely with a US client as the Lead Web Developer, focusing on delivering high-quality web solutions.  
-              Designed and developed custom multistep forms for Tax Resolutions, enhancing user experience and functionality.  
-              Reconstructed and redesigned existing websites using WordPress, WooCommerce, and Elementor Pro to optimize performance.
-              Built custom multistep tax resolution forms and high-conversion landing pages. 
-              Reconstructed and optimized WordPress websites using WooCommerce and Elementor Pro.
+              Led WordPress development and technical delivery for client websites,
+              including custom functionality, templates, plugins, advanced content
+              systems, performance improvements, responsive UI and deployments.
             </p>
           </article>
 
           <article class="experience-card">
             <div>
-              <h3>Clear Corporate Solutions</h3>
+              <h3>WordPress Development</h3>
               <div class="experience-card__date">
-                Software Engineer · May 2018 – Aug 2021
+                WordPress / Web Developer · 2015 – 2020
               </div>
             </div>
             <p>
-              Working closely with Australian Client.
-              Responsible for the overall technical reconstruction and revision of the existing Dynamic E-commerce website. 
-              Fixed bugs from existing website and implemented enhancements that significantly improved web functionality and speed. Develop or validate test routines and schedules to ensure that test cases mimic external interfaces and address all browser and device types. Perform web site tests according to planned schedules.
-
-            </p>
-          </article>
-
-
-          <article class="experience-card">
-            <div>
-              <h3>Fortworth Inc</h3>
-              <div class="experience-card__date">
-                Web Developer · Feb 2017 - Feb 2018
-              </div>
-            </div>
-            <p>
-            An LMS website for students and teachers. Created Using Moodle from Drupal
-      Web revision and migration from point a to point b.
-      Creating website layout/user interfaces by using standard HTML/CSS practices.
-      Responsible for maintaining, expanding, and scaling of the website. 
-      Develop or implement procedures for ongoing website revision.
-            </p>
-          </article>
-          <article class="experience-card">
-            <div>
-              <h3>Artistryware Inc</h3>
-              <div class="experience-card__date">
-                Software Developer · April 2016 - Feb 2017
-              </div>
-            </div>
-            <p>
-            A small and start-up gaming developing company. Established Company website and made customization.
-            Responsibilities: Document and maintain software functionality. Comply with project plans and industry standards. In charge of Company’s Website modification and developing.
-
+              Built and maintained WordPress websites, custom layouts and templates,
+              PHP-based customizations, plugin/theme development and front-end/
+              back-end troubleshooting.
             </p>
           </article>
         </div>
